@@ -14,8 +14,7 @@ pub fn get_n_for_2n(n: usize) -> usize {
             return i as usize;
         }
     }
-
-    return 0;
+    0
 }
 
 pub fn hash_2_node<D: Digest>(x: Output<D>, y: Output<D>) -> Output<D> {

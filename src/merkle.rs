@@ -91,7 +91,7 @@ impl<D: Digest> Merkle<D> {
 
             nodes.push(ProofNode::new(idx, node));
 
-            begin += 1 << self.depth - i;
+            begin += 1 << (self.depth - i);
         }
 
         MerkleProof {
