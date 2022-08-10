@@ -1,3 +1,5 @@
+use digest::{Digest, Output};
+
 pub fn shift_to_2n(n: usize) -> usize {
     (n & (n - 1)) << 1
 }
@@ -7,13 +9,22 @@ pub fn bit(n: usize, pos: u32) -> bool {
 }
 
 pub fn get_n_for_2n(n: usize) -> usize {
-    for i in 0 .. usize::BITS {
+    for i in 0..usize::BITS {
         if bit(n, i) {
             return i as usize;
         }
     }
 
     return 0;
+}
+
+pub fn hash_2_node<D: Digest>(x: Output<D>, y: Output<D>) -> Output<D> {
+    let mut hasher = D::new();
+
+    hasher.update(&x);
+    hasher.update(&y);
+
+    hasher.finalize()
 }
 
 #[cfg(test)]
@@ -34,4 +45,3 @@ mod tests {
         assert_eq!(16, shift_to_2n(9));
     }
 }
-

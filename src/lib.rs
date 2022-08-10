@@ -1,5 +1,7 @@
 mod merkle;
 pub use merkle::*;
 
-pub mod utils;
+mod proof;
+pub use proof::*;
 
+pub mod utils;
